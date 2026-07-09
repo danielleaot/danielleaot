@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dani | Gestora Moodle & Designer Instrucional</title>
+<style>
+  :root{
+    --brand:#2E5C8A;
+    --brand-dark:#1F3F5F;
+    --brand-light:#EAF1F8;
+    --accent:#E08E45;
+    --text:#25313F;
+    --muted:#5B6B7A;
+    --bg:#FFFFFF;
+    --bg-soft:#F6F9FC;
+    --radius:14px;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.55;
+  }
+  a{color:var(--brand);}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #E7ECF2;
+  }
+  .nav-inner{
+    max-width:var(--max);margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-weight:700;color:var(--brand-dark);font-size:1.1rem;letter-spacing:.2px;}
+  nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  nav a{text-decoration:none;color:var(--text);font-size:.95rem;font-weight:500;}
+  nav a:hover{color:var(--brand);}
+  .nav-cta{
+    background:var(--brand);color:#fff;padding:9px 18px;border-radius:8px;
+    text-decoration:none;font-size:.9rem;font-weight:600;
+  }
+  @media (max-width:760px){ nav ul{display:none;} }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(135deg,var(--brand-light) 0%, #fff 65%);
+    padding:72px 0 56px;
+  }
+  .hero-inner{display:flex;align-items:center;gap:48px;flex-wrap:wrap;}
+  .hero-photo{
+    width:168px;height:168px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),var(--accent));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:2.6rem;font-weight:700;flex-shrink:0;
+    box-shadow:0 10px 30px rgba(46,92,138,.25);
+  }
+  .hero-text{flex:1;min-width:280px;}
+  .eyebrow{color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.8rem;margin-bottom:8px;}
+  h1{font-size:2.4rem;margin:0 0 10px;color:var(--brand-dark);}
+  .hero-role{font-size:1.15rem;color:var(--muted);margin-bottom:18px;}
+  .hero-value{max-width:560px;color:var(--text);}
+  .hero-buttons{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem;
+    display:inline-block;
+  }
+  .btn-primary{background:var(--brand);color:#fff;}
+  .btn-secondary{background:#fff;color:var(--brand);border:1.5px solid var(--brand);}
+
+  section{padding:64px 0;}
+  .section-title{font-size:1.7rem;color:var(--brand-dark);margin-bottom:6px;}
+  .section-sub{color:var(--muted);margin-bottom:36px;max-width:640px;}
+  .alt{background:var(--bg-soft);}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:760px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:#fff;border:1px solid #E7ECF2;border-radius:var(--radius);
+    padding:28px;
+  }
+  .skill-card h3{margin-top:0;color:var(--brand);font-size:1.15rem;}
+  .skill-card ul{margin:0;padding-left:20px;color:var(--text);}
+  .skill-card li{margin-bottom:6px;}
+  .tag-badge{
+    display:inline-block;background:var(--brand-light);color:var(--brand-dark);
+    padding:4px 12px;border-radius:20px;font-size:.82rem;font-weight:600;margin:4px 6px 0 0;
+  }
+
+  /* CASES */
+  .cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+  .case-card{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    border:1px solid #E7ECF2;transition:box-shadow .2s, transform .2s;
+  }
+  .case-card:hover{box-shadow:0 12px 28px rgba(31,63,95,.12);transform:translateY(-2px);}
+  .case-thumb{
+    height:150px;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;
+    text-align:center;padding:12px;
+  }
+  .case-body{padding:20px;}
+  .case-body h3{margin:0 0 8px;font-size:1.05rem;color:var(--brand-dark);}
+  .case-body p{margin:0 0 12px;color:var(--muted);font-size:.92rem;}
+  .case-meta{display:flex;flex-wrap:wrap;gap:6px;}
+  .case-meta span{
+    font-size:.72rem;background:var(--bg-soft);color:var(--brand-dark);
+    padding:3px 9px;border-radius:12px;font-weight:600;
+  }
+  .placeholder-note{
+    font-size:.8rem;color:var(--accent);font-style:italic;margin-top:10px;
+  }
+
+  /* TOOLS */
+  .tools-row{display:flex;flex-wrap:wrap;gap:14px;}
+  .tool-chip{
+    background:#fff;border:1px solid #E7ECF2;border-radius:10px;
+    padding:12px 20px;font-weight:600;color:var(--brand-dark);font-size:.92rem;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial{
+    background:#fff;border-left:4px solid var(--accent);border-radius:8px;
+    padding:24px 28px;max-width:720px;color:var(--text);font-style:italic;
+  }
+  .testimonial cite{display:block;margin-top:12px;font-style:normal;font-weight:700;color:var(--brand-dark);}
+
+  /* CONTACT */
+  .contact{
+    background:linear-gradient(135deg,var(--brand-dark),var(--brand));
+    color:#fff;text-align:center;
+  }
+  .contact .section-title{color:#fff;}
+  .contact .section-sub{color:#D9E4F0;margin:0 auto 30px;}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .contact-links a{
+    background:#fff;color:var(--brand-dark);padding:12px 24px;border-radius:8px;
+    text-decoration:none;font-weight:700;font-size:.95rem;
+  }
+  .contact-links a.outline{
+    background:transparent;color:#fff;border:1.5px solid #fff;
+  }
+
+  footer{padding:24px;text-align:center;color:var(--muted);font-size:.82rem;background:var(--bg-soft);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Dani <span style="color:var(--accent)">•</span> Moodle & DI</div>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#competencias">Competências</a></li>
+        <li><a href="#cases">Projetos</a></li>
+        <li><a href="#ferramentas">Ferramentas</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#contato">Contato</a>
+  </div>
+</header>
+
+<section class="hero" id="sobre">
+  <div class="wrap hero-inner">
+    <div class="hero-photo">D</div>
+    <div class="hero-text">
+      <div class="eyebrow">Portfólio profissional</div>
+      <h1>Dani [Sobrenome]</h1>
+      <div class="hero-role">Gestora de Plataforma Moodle &amp; Designer Instrucional</div>
+      <p class="hero-value">
+        Estruturo cursos on-line do zero ao lançamento: desenho pedagógico, roteirização de conteúdo
+        e configuração completa da plataforma Moodle — usuários, papéis, relatórios, SCORM/H5P e
+        integrações. Ajudo empresas e instituições a colocar EAD no ar com qualidade e no prazo.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#cases">Ver projetos</a>
+        <a class="btn btn-secondary" href="#" target="_blank">Baixar currículo (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competencias">
+  <div class="wrap">
+    <h2 class="section-title">Competências</h2>
+    <p class="section-sub">Do desenho pedagógico à configuração técnica da plataforma — atuação de ponta a ponta em projetos de EAD.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Design Instrucional</h3>
+        <ul>
+          <li>Metodologia ADDIE e desenho de experiências de aprendizagem</li>
+          <li>Roteirização e storyboard de cursos</li>
+          <li>Produção em Articulate Storyline / Rise e H5P</li>
+          <li>Avaliação de aprendizagem e trilhas de conteúdo</li>
+          <li>Adaptação de conteúdo presencial para EAD</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Administração Moodle</h3>
+        <ul>
+          <li>Criação e configuração de cursos e categorias</li>
+          <li>Gestão de usuários, papéis e permissões</li>
+          <li>Relatórios de desempenho, logs e acompanhamento de turmas</li>
+          <li>Instalação e configuração de plugins, SCORM e H5P</li>
+          <li>Backup, restauração e manutenção da plataforma</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases" class="alt">
+  <div class="wrap">
+    <h2 class="section-title">Projetos em destaque</h2>
+    <p class="section-sub">
+      Substitua cada card abaixo por um case real: contexto, papel dela no projeto, o que foi feito
+      e o resultado obtido. Ideal: 4 a 8 projetos, com 2-3 imagens/prints cada.
+    </p>
+    <div class="cases-grid">
+
+      <div class="case-card">
+        <div class="case-thumb">[ print da tela do curso / Moodle ]</div>
+        <div class="case-body">
+          <h3>Onboarding corporativo — [Nome da empresa/projeto]</h3>
+          <p>Contexto: onboarding de novos colaboradores era feito presencialmente e não escalava.
+          Ação: desenho instrucional de trilha de 6 módulos + implantação completa no Moodle
+          (usuários, relatórios automáticos, certificação).</p>
+          <div class="case-meta"><span>ADDIE</span><span>Moodle</span><span>SCORM</span><span>Relatórios</span></div>
+          <p class="placeholder-note">Substituir por resultado real (ex.: 300 colaboradores, -40% tempo de onboarding)</p>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-thumb">[ print de relatório / configuração ]</div>
+        <div class="case-body">
+          <h3>Curso técnico com certificação — [Nome do curso]</h3>
+          <p>Contexto: instituição precisava de curso auto-instrucional com certificado automático.
+          Ação: roteirização, produção em Articulate Rise, integração H5P e configuração de
+          certificação automática no Moodle.</p>
+          <div class="case-meta"><span>Articulate Rise</span><span>H5P</span><span>Certificação</span></div>
+          <p class="placeholder-note">Substituir por resultado real (ex.: nota média de satisfação 4.8/5)</p>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-thumb">[ print de painel administrativo ]</div>
+        <div class="case-body">
+          <h3>Migração e reestruturação de ambiente Moodle</h3>
+          <p>Contexto: ambiente Moodle desorganizado, sem padrão de categorias e permissões.
+          Ação: reestruturação de categorias, papéis de usuário, plugins e política de backup.</p>
+          <div class="case-meta"><span>Administração</span><span>Governança</span><span>Plugins</span></div>
+          <p class="placeholder-note">Substituir por resultado real (ex.: redução de chamados de suporte)</p>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-thumb">[ adicionar mais um case aqui ]</div>
+        <div class="case-body">
+          <h3>[ Nome do próximo projeto ]</h3>
+          <p>Descreva em 2-3 frases: o problema, o que foi feito (desenho + Moodle) e o resultado
+          mensurável.</p>
+          <div class="case-meta"><span>Tag 1</span><span>Tag 2</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="ferramentas">
+  <div class="wrap">
+    <h2 class="section-title">Ferramentas</h2>
+    <p class="section-sub">Stack usada no dia a dia de produção de cursos e administração da plataforma.</p>
+    <div class="tools-row">
+      <div class="tool-chip">Moodle</div>
+      <div class="tool-chip">Articulate Storyline</div>
+      <div class="tool-chip">Articulate Rise</div>
+      <div class="tool-chip">H5P</div>
+      <div class="tool-chip">Canva</div>
+      <div class="tool-chip">SCORM</div>
+      <div class="tool-chip">Excel / Google Sheets</div>
+      <div class="tool-chip">PowerPoint</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2 class="section-title">Depoimento</h2>
+    <div class="testimonial">
+      "Texto de depoimento de uma liderança, colega ou cliente sobre o trabalho dela — substitua
+      por um depoimento real quando disponível."
+      <cite>Nome, Cargo — Empresa</cite>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap">
+    <h2 class="section-title">Vamos conversar?</h2>
+    <p class="section-sub">Aberta a oportunidades CLT, PJ e projetos freelance de EAD e Moodle.</p>
+    <div class="contact-links">
+      <a href="mailto:email@exemplo.com">E-mail</a>
+      <a class="outline" href="https://linkedin.com/in/exemplo" target="_blank">LinkedIn</a>
+      <a class="outline" href="https://wa.me/55DDDNUMERO" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Protótipo de portfólio — pronto para publicar em Carrd, GitHub Pages ou qualquer hospedagem estática.
+</footer>
+
+</body>
+</html>
