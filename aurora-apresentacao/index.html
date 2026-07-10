@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora — Trilha com Apresentação Integrada</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="aurora-bg" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">A</span>
+    <span class="brand-name">Aurora</span>
+  </div>
+  <nav class="path" id="path" aria-label="Trilha do curso"></nav>
+  <div class="progress-pill"><span id="pct">0%</span></div>
+</header>
+
+<main class="stage" id="stage">
+  <section class="glass-card on" id="s-intro">
+    <div class="hero">
+      <span class="eyebrow">Protótipo de Interface · Projeto de Portfólio</span>
+      <h1 class="hero-title">Trilha de Aprendizagem</h1>
+      <p class="hero-sub">Lorem ipsum dolor sit amet — cada módulo integra sua própria apresentação de apoio, com visualizador de slides, miniaturas e modo ampliado.</p>
+      <button class="glass-btn cta" onclick="goTo('m1')">Começar trilha →</button>
+    </div>
+
+    <div class="preview-grid" id="previewGrid"></div>
+
+    <p class="fine-print">Projeto de demonstração para portfólio. Todo o conteúdo textual é placeholder (lorem ipsum) e não representa material educacional real.</p>
+  </section>
+  <!-- os módulos são inseridos aqui dinamicamente por app.js -->
+</main>
+
+<dialog id="thumbsDialog" class="glass-dialog">
+  <div class="dialog-head">
+    <h2 id="thumbTitle">Slides do módulo</h2>
+    <button type="button" data-close aria-label="Fechar">×</button>
+  </div>
+  <div class="thumb-grid" id="thumbGrid"></div>
+</dialog>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button id="closeLightbox" type="button" aria-label="Fechar">×</button>
+  <img id="lightboxImg" alt="Slide ampliado">
+</div>
+
+<script src="js/content.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // monta a pré-visualização dos módulos na tela inicial
+  (function(){
+    const grid = document.getElementById('previewGrid');
+    if(!grid) return;
+    grid.innerHTML = MODULES.map(m => `
+      <button class="preview-card" onclick="goTo('${m.id}')">
+        <span class="preview-num">${String(m.num).padStart(2,'0')}</span>
+        <span class="preview-eyebrow">${m.eyebrow}</span>
+        <span class="preview-title">${m.title}</span>
+      </button>`).join('');
+  })();
+</script>
+</body>
+</html>
