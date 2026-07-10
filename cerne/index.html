@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aurora — Trilha com Apresentação Integrada</title>
+<title>Cerne — Protótipo de Trilha de Curso</title>
 <link href="css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="aurora-bg" aria-hidden="true">
+<div class="page-bg" aria-hidden="true">
   <span class="blob b1"></span>
   <span class="blob b2"></span>
   <span class="blob b3"></span>
@@ -22,8 +22,8 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-head">
     <div class="brand">
-      <span class="brand-mark">A</span>
-      <span class="brand-name">Aurora</span>
+      <span class="brand-mark">C</span>
+      <span class="brand-name">Cerne</span>
     </div>
     <button class="sidebar-close" id="sidebarClose" aria-label="Fechar menu">×</button>
   </div>
@@ -46,8 +46,8 @@
     <section class="glass-card on" id="s-intro">
       <div class="hero">
         <span class="eyebrow">Protótipo de Interface · Projeto de Portfólio</span>
-        <h1 class="hero-title">Trilha de Aprendizagem</h1>
-        <p class="hero-sub">Lorem ipsum dolor sit amet — cada módulo integra sua própria apresentação de apoio, com visualizador de slides, miniaturas e modo ampliado.</p>
+        <h1 class="hero-title">O cerne de cada assunto,<br>em capítulos.</h1>
+        <p class="hero-sub">Lorem ipsum dolor sit amet — um protótipo de plataforma de curso com leitura editorial, construído do zero para demonstrar navegação modular, progresso e microinterações.</p>
         <button class="glass-btn cta" onclick="goTo('m1')">Começar trilha →</button>
       </div>
 
@@ -61,8 +61,8 @@
       <div class="complete-screen">
         <span class="complete-badge">✓</span>
         <span class="eyebrow">Fim da trilha</span>
-        <h1 class="hero-title">Apresentação concluída.</h1>
-        <p class="hero-sub">Lorem ipsum dolor sit amet — você percorreu todos os módulos e slides deste protótipo. Em um curso real, aqui apareceriam certificado, avaliação ou próximos passos.</p>
+        <h1 class="hero-title">Trilha concluída.</h1>
+        <p class="hero-sub">Lorem ipsum dolor sit amet — você percorreu todos os módulos deste protótipo. Em um curso real, aqui apareceriam certificado, próximos passos ou recomendações de continuidade.</p>
         <div class="hero-buttons">
           <button class="glass-btn cta" onclick="goTo('intro')">Voltar ao início</button>
           <button class="glass-btn ghost" onclick="goTo('m1')">Rever módulo 01</button>
@@ -70,19 +70,6 @@
       </div>
     </section>
   </main>
-</div>
-
-<dialog id="thumbsDialog" class="glass-dialog">
-  <div class="dialog-head">
-    <h2 id="thumbTitle">Slides do módulo</h2>
-    <button type="button" data-close aria-label="Fechar">×</button>
-  </div>
-  <div class="thumb-grid" id="thumbGrid"></div>
-</dialog>
-
-<div id="lightbox" class="lightbox" hidden>
-  <button id="closeLightbox" type="button" aria-label="Fechar">×</button>
-  <img id="lightboxImg" alt="Slide ampliado">
 </div>
 
 <script src="js/content.js"></script>

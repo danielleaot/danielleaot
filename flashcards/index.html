@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards Interativos — Protótipo</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg-shapes" aria-hidden="true">
+  <span class="shape s1"></span>
+  <span class="shape s2"></span>
+</div>
+
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">F</span><span class="brand-name">Flashcards</span></div>
+  <span class="tag">Protótipo de portfólio · conteúdo fictício</span>
+</header>
+
+<main class="wrap">
+
+  <section class="intro" id="screenIntro">
+    <p class="eyebrow">Estudo ativo · repetição espaçada</p>
+    <h1>Revise conceitos em cartões, no seu ritmo.</h1>
+    <p class="lead">Lorem ipsum dolor sit amet — clique no cartão para virar e ver a resposta, marque se acertou ou errou, e acompanhe seu progresso pelo baralho.</p>
+    <div class="deck-picker" id="deckPicker"></div>
+  </section>
+
+  <section class="study" id="screenStudy" hidden>
+    <div class="study-head">
+      <button class="icon-btn" id="backBtn" type="button" aria-label="Voltar aos baralhos">←</button>
+      <div class="study-progress">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-label" id="progressLabel">1 / 8</span>
+      </div>
+      <button class="icon-btn" id="shuffleBtn" type="button" aria-label="Embaralhar cartões">⤨</button>
+    </div>
+
+    <div class="card-stage">
+      <button class="flip-hint" id="flipHint" type="button">Toque para virar ↻</button>
+      <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Cartão de estudo, toque para virar">
+        <div class="flashcard-inner" id="flashcardInner">
+          <div class="face front">
+            <span class="face-label">Pergunta</span>
+            <p class="face-text" id="frontText"></p>
+          </div>
+          <div class="face back">
+            <span class="face-label">Resposta</span>
+            <p class="face-text" id="backText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assess-row" id="assessRow" hidden>
+      <button class="assess-btn dont" id="dontKnowBtn" type="button">✕ Não sabia</button>
+      <button class="assess-btn know" id="knowBtn" type="button">✓ Sabia</button>
+    </div>
+
+    <div class="nav-row">
+      <button class="glass-btn ghost" id="prevBtn" type="button">← Anterior</button>
+      <button class="glass-btn" id="nextBtn" type="button">Próximo →</button>
+    </div>
+  </section>
+
+  <section class="summary" id="screenSummary" hidden>
+    <span class="summary-badge">🎉</span>
+    <p class="eyebrow">Baralho concluído</p>
+    <h1>Bom trabalho!</h1>
+    <div class="summary-stats">
+      <div><strong id="sumKnow">0</strong><span>Sabia</span></div>
+      <div><strong id="sumDontKnow">0</strong><span>Para revisar</span></div>
+    </div>
+    <div class="hero-buttons">
+      <button class="glass-btn cta" id="restartBtn" type="button">Estudar de novo</button>
+      <button class="glass-btn ghost" id="otherDeckBtn" type="button">Escolher outro baralho</button>
+    </div>
+  </section>
+
+  <p class="proto-footnote">Protótipo de portfólio — demonstra um padrão de estudo por repetição (flashcards) com virada 3D, progresso e autoavaliação. Todo o conteúdo é placeholder (lorem ipsum), criado para fins de demonstração.</p>
+</main>
+
+<script src="js/content.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

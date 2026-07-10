@@ -1,21 +1,39 @@
-/* app.js — Aurora + Apresentação: navegação da trilha e do visualizador de slides */
+/* app.js — Aurora + Apresentação: menu lateral, visualizador de slides, tela de conclusão */
 const state = { current: 'intro', visited: new Set(['intro']), viewers: {} };
-const ORDER = ['intro', ...MODULES.map(m => m.id)];
-const LABEL = { intro: 'Visão geral' };
+const ORDER = ['intro', ...MODULES.map(m => m.id), 'complete'];
+const LABEL = { intro: 'Visão geral', complete: 'Trilha concluída' };
 MODULES.forEach(m => { LABEL[m.id] = m.title; });
 
 function moduleSlides(m){ return SLIDES.filter(s => s.n >= m.start && s.n <= m.end); }
 
-/* ── trilha de módulos no topo ── */
-function buildPath(){
-  const path = document.getElementById('path');
-  if(!path) return;
-  const nodes = MODULES.map(m => `
-    <button class="path-node" data-id="${m.id}" onclick="goTo('${m.id}')" aria-label="${m.title}">
-      <span class="path-dot"></span>
-      <span class="path-label">${String(m.num).padStart(2,'0')}</span>
-    </button>`).join('');
-  path.innerHTML = `<span class="path-line" id="pathLine"></span>${nodes}`;
+/* ── menu lateral: módulos + lista de slides de cada um ── */
+function buildSidebar(){
+  const nav = document.getElementById('sidebarNav');
+  if(!nav) return;
+  const introItem = `
+    <a href="#" class="side-link" data-id="intro" onclick="goTo('intro');return false;">
+      <span class="side-dot"></span>Visão geral
+    </a>`;
+  const moduleItems = MODULES.map(m => {
+    const slides = moduleSlides(m);
+    return `
+    <div class="side-module">
+      <a href="#" class="side-link side-module-link" data-id="${m.id}" onclick="goTo('${m.id}');return false;">
+        <span class="side-num">${String(m.num).padStart(2,'0')}</span>${m.title}
+      </a>
+      <div class="side-sections">
+        ${slides.map((s, i) => `
+          <a href="#" class="side-sublink" data-id="${m.id}" data-i="${i}" onclick="goToSlide('${m.id}',${i});return false;">
+            <span class="side-subnum">${String(s.n).padStart(2,'0')}</span>${s.title}
+          </a>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+  const completeItem = `
+    <a href="#" class="side-link" data-id="complete" onclick="goTo('complete');return false;">
+      <span class="side-dot"></span>Conclusão
+    </a>`;
+  nav.innerHTML = introItem + moduleItems + completeItem;
 }
 
 function buildStage(){
@@ -23,7 +41,7 @@ function buildStage(){
   if(!stage) return;
   let html = '';
   MODULES.forEach(m => { html += `<section class="glass-card" id="s-${m.id}"><div id="stage-${m.id}"></div></section>`; });
-  stage.insertAdjacentHTML('beforeend', html);
+  document.getElementById('s-complete').insertAdjacentHTML('beforebegin', html);
   MODULES.forEach(m => renderModule(m));
 }
 
@@ -89,6 +107,7 @@ function viewerRender(id){
   const counter = document.getElementById('counter-' + id);
   if(counter) counter.textContent = `${v.i + 1} / ${slides.length}`;
   document.querySelectorAll(`#dots-${id} .track-dot`).forEach((d, i) => d.classList.toggle('on', i === v.i));
+  document.querySelectorAll(`.side-sublink[data-id="${id}"]`).forEach((el, i) => el.classList.toggle('active', i === v.i));
 }
 function viewerStep(id, dir){
   const m = MODULES.find(x => x.id === id);
@@ -99,6 +118,12 @@ function viewerStep(id, dir){
   navLinear(dir);
 }
 
+/* ── ir direto para um slide específico (a partir do menu lateral) ── */
+function goToSlide(moduleId, i){
+  goTo(moduleId);
+  setTimeout(() => viewerGo(moduleId, i), 30);
+}
+
 /* ── navegação entre telas ── */
 function goTo(id){
   document.getElementById('s-' + state.current)?.classList.remove('on');
@@ -107,10 +132,13 @@ function goTo(id){
   next.classList.add('on');
   state.current = id;
   state.visited.add(id);
-  document.querySelectorAll('.path-node').forEach(n => n.classList.toggle('active', n.dataset.id === id));
+  document.querySelectorAll('.side-link').forEach(n => n.classList.toggle('active', n.dataset.id === id));
+  const title = document.getElementById('topbarTitle');
+  if(title) title.textContent = LABEL[id] || '';
   if(MODULES.some(m => m.id === id)) setTimeout(() => viewerInit(id), 20);
   window.scrollTo({ top: 0, behavior: 'smooth' });
   updateProgress();
+  closeSidebar();
 }
 function navLinear(dir){
   const idx = ORDER.indexOf(state.current);
@@ -154,13 +182,29 @@ function closeLightbox(){ document.getElementById('lightbox').hidden = true; }
 
 /* ── progresso ── */
 function updateProgress(){
-  const done = ORDER.filter(id => state.visited.has(id)).length;
-  const pct = Math.round((done / ORDER.length) * 100);
+  const trackable = ORDER.filter(id => id !== 'complete');
+  const done = trackable.filter(id => state.visited.has(id)).length;
+  const pct = Math.round((done / trackable.length) * 100);
   const pctEl = document.getElementById('pct');
   if(pctEl) pctEl.textContent = pct + '%';
-  const line = document.getElementById('pathLine');
-  if(line) line.style.setProperty('--fill', pct + '%');
+  const fill = document.getElementById('progressFill');
+  if(fill) fill.style.width = pct + '%';
 }
+
+/* ── menu lateral: abrir/fechar (mobile) ── */
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('on');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('on');
+}
+document.getElementById('sidebarToggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.contains('open') ? closeSidebar() : openSidebar();
+});
+document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
 
 /* ── teclado e diálogos ── */
 document.addEventListener('keydown', e => {
@@ -168,8 +212,12 @@ document.addEventListener('keydown', e => {
   const dialogOpen = document.getElementById('thumbsDialog')?.open;
   const lbOpen = !document.getElementById('lightbox')?.hidden;
   if(e.key === 'Escape'){
-    document.getElementById('thumbsDialog')?.close();
-    closeLightbox();
+    if(dialogOpen || lbOpen){
+      document.getElementById('thumbsDialog')?.close();
+      closeLightbox();
+      return;
+    }
+    closeSidebar();
     return;
   }
   if(dialogOpen || lbOpen) return;
@@ -179,7 +227,7 @@ document.addEventListener('keydown', e => {
 
 /* ── início ── */
 (function(){
-  buildPath();
+  buildSidebar();
   buildStage();
   goTo('intro');
 

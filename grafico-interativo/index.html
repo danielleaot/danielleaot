@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia & Pedagogia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --glass-blur: blur(16px);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .header-section { text-align: center; }
+        .badge {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        .lead { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 30px; }
+        h2 { font-size: 1.3rem; font-weight: 600; color: #f1f5f9; margin-bottom: 8px; }
+        .instruction { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .chart-wrapper {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            height: 320px;
+            position: relative;
+        }
+        .info-panel {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 80px;
+            transition: all 0.3s ease;
+        }
+        .info-panel strong { color: #ffffff; display: block; margin-bottom: 6px; font-size: 1rem; }
+        .info-panel p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-section">
+        <span class="badge">Ecosistema Educacional</span>
+        <h1>Tecnologia & Pedagogia</h1>
+        <p class="lead">A convergência digital ressignificando os ecossistemas de aprendizagem através de metodologias ativas de alto impacto.</p>
+    </div>
+    <h2>Interatividade: Taxa de Retenção por Abordagem</h2>
+    <p class="instruction">Explore os dados clicando diretamente nas barras do gráfico interativo:</p>
+    <div class="chart-wrapper">
+        <canvas id="pedagogiaChart"></canvas>
+    </div>
+    <div id="feedback-panel" class="info-panel">
+        <strong>Exploração de Dados</strong>
+        <p>Selecione uma abordagem metodológica no gráfico acima para visualizar a análise técnico-pedagógica correspondente.</p>
+    </div>
+</div>
+<script src="scorm_api_wrapper.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

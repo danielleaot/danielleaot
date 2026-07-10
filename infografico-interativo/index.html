@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panorama Digital — Infográfico Interativo</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="mesh-bg" aria-hidden="true">
+  <span class="blob m1"></span>
+  <span class="blob m2"></span>
+  <span class="blob m3"></span>
+</div>
+
+<header class="page-head">
+  <div class="brand">
+    <span class="brand-mark">P</span>
+    <span class="brand-name">Panorama Digital</span>
+  </div>
+  <div class="head-right">
+    <a class="back-link" href="../index.html">← Voltar ao portfólio</a>
+    <span class="tag">Protótipo de portfólio · dados fictícios</span>
+  </div>
+</header>
+
+<main class="hero">
+  <p class="eyebrow">Infográfico interativo · edição 2026</p>
+  <h1 class="hero-title">O retrato do comportamento<br>digital, em blocos.</h1>
+  <p class="hero-sub">Lorem ipsum dolor sit amet consectetur adipiscing elit — clique em qualquer bloco do painel abaixo para abrir os detalhes. Todos os números e textos são fictícios (lorem ipsum), usados apenas para fins de demonstração visual.</p>
+</main>
+
+<section class="bento" id="bento" aria-label="Painel de dados"></section>
+
+<footer class="page-foot">
+  <p>Projeto de demonstração para portfólio. Nenhum dado real foi utilizado.</p>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <span class="modal-tag" id="modalTag"></span>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="js/content.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

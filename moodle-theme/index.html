@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estilização de Página de Curso — Protótipo Moodle</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══════════ barra de anotação do protótipo (não é Moodle real) ══════════ -->
+<div class="proto-bar">
+  <div class="proto-bar-inner">
+    <span class="proto-label">Protótipo · simulação de página de curso Moodle</span>
+    <div class="theme-switch" role="group" aria-label="Alternar temática do curso">
+      <button class="theme-btn on" data-theme-btn="a" type="button">🟣 Tema: Humanidades</button>
+      <button class="theme-btn" data-theme-btn="b" type="button">🟡 Tema: Dados &amp; BI</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ topo estilo Moodle (chrome fake, só decorativo) ══════════ -->
+<header class="lms-top">
+  <button class="lms-burger" aria-label="Menu" type="button">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <h1 class="lms-course-title" id="courseTitle">Cidadania e Direitos — Curso Introdutório</h1>
+  <button class="lms-collapse" aria-label="Recolher painel" type="button">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</header>
+<nav class="lms-tabs">
+  <a class="on" href="#">Curso</a>
+  <a href="#">Configurações</a>
+  <a href="#">Participantes</a>
+  <a href="#">Notas</a>
+  <a href="#">Relatórios</a>
+  <a href="#">Mais ⌄</a>
+</nav>
+
+<!-- ══════════ conteúdo estilizado (o que de fato é customizado no Moodle) ══════════ -->
+<main class="lms-wrap">
+
+  <section class="course-banner">
+    <div class="banner-left">
+      <span class="info-pill">ⓘ Informações do curso</span>
+      <p class="greet">Olá, Participante.</p>
+      <p class="greet-sub" id="greetSub">Aqui separamos algumas informações básicas sobre o seu curso:</p>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-icon" id="heroIcon"></span>
+      <span class="hero-stat-num">40h</span>
+      <span class="hero-stat-label">Carga horária total do curso.</span>
+    </div>
+  </section>
+
+  <section class="info-cards">
+    <article class="info-card">
+      <span class="info-icon" data-icon="target"></span>
+      <h3>Nota mínima</h3>
+      <p>Para aprovação, é necessário alcançar a nota mínima de <strong>70 pontos</strong>.</p>
+    </article>
+    <article class="info-card">
+      <span class="info-icon" data-icon="guide"></span>
+      <h3>Guia do Participante</h3>
+      <p>Consulte sempre o <strong>Guia do Participante</strong> em caso de dúvidas sobre a trilha.</p>
+    </article>
+    <article class="info-card">
+      <span class="info-icon" data-icon="pdf"></span>
+      <h3>Conteúdo em PDF</h3>
+      <p>Clique para acessar o <strong>material completo em PDF</strong>, disponível para consulta offline.</p>
+    </article>
+  </section>
+
+  <section class="satisfaction-row">
+    <span class="info-icon lg" data-icon="survey"></span>
+    <div class="satisfaction-text">
+      <h3>Avaliação de Satisfação</h3>
+      <p>Ao final do curso, responda à <strong>Avaliação de Satisfação</strong> com suas sugestões. Sua opinião é importante para nós.</p>
+    </div>
+    <button class="cta-btn" type="button">✨ Bons estudos!</button>
+  </section>
+
+  <section class="modules-section">
+    <h2 class="section-h">📚 Conteúdo do Curso</h2>
+    <p class="section-sub">Acesse o conteúdo de cada módulo e realize os exercícios avaliativos para fixar o aprendizado.</p>
+    <div class="modules-grid" id="modulesGrid"></div>
+  </section>
+
+  <section class="closing-banner">
+    <span class="closing-icon">🎖️</span>
+    <h2>Módulo de Encerramento</h2>
+  </section>
+
+  <section class="accordion" id="accordion" aria-label="Seções do curso"></section>
+
+  <div class="success-box">
+    <p><strong>Parabéns!</strong> Você atingiu a nota mínima para aprovação no curso.</p>
+    <p><button class="pill-btn" type="button">Clique aqui</button> para verificar se o seu certificado já está disponível.</p>
+    <p>Para imprimir este e outros certificados futuramente, acesse sua <a href="#">área do aluno</a>.</p>
+  </div>
+
+  <p class="fine-print">🔒 Disponível se: você atinge mais do que uma determinada pontuação em <strong>Total do curso</strong> (escondido caso contrário).</p>
+
+  <p class="proto-footnote">Protótipo de portfólio — demonstra estilização de página de curso (Moodle) adaptada à temática do conteúdo. Nomes, textos e ícones são fictícios/genéricos, criados para fins de demonstração.</p>
+</main>
+
+<script src="js/content.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

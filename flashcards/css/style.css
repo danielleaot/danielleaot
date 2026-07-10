@@ -1,0 +1,157 @@
+/* ==========================================================
+   Flashcards Interativos — Protótipo de Portfólio
+   Estilo: clean, cartão com flip 3D real
+   ========================================================== */
+:root{
+  --bg:#FAFBFC;
+  --surface:#FFFFFF;
+  --ink:#14181F;
+  --muted:#667085;
+  --border:#E4E7EC;
+  --brand:#10B981;
+  --brand-dark:#047857;
+  --accent:#FF6F61;
+  --violet:#7C3AED;
+  --radius:20px;
+  --shadow-sm:0 2px 10px rgba(20,24,31,.06);
+  --shadow-md:0 18px 40px rgba(20,24,31,.12);
+  --shadow-lg:0 30px 70px rgba(20,24,31,.20);
+  --ease:cubic-bezier(.22,.7,.2,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Inter',sans-serif;line-height:1.55;overflow-x:hidden;
+}
+h1{font-family:'Sora',sans-serif;margin:0;font-weight:800}
+p{margin:0}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+.bg-shapes{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.shape{position:absolute;border-radius:50%;filter:blur(90px);opacity:.16}
+.s1{width:40vw;height:40vw;background:var(--brand);top:-14vw;right:-10vw}
+.s2{width:32vw;height:32vw;background:var(--accent);bottom:-12vw;left:-10vw;opacity:.12}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  padding:20px 32px;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+  width:30px;height:30px;border-radius:9px;background:var(--ink);color:#fff;
+  font-family:'Sora',sans-serif;font-weight:800;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.brand-name{font-family:'Sora',sans-serif;font-weight:700;font-size:15px}
+.tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+  background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 12px;
+}
+
+.wrap{max-width:720px;margin:0 auto;padding:20px 24px 60px;text-align:center}
+
+/* ── intro ── */
+.intro{padding:36px 0 10px}
+.eyebrow{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--brand-dark);margin-bottom:16px;
+}
+.intro h1{font-size:clamp(26px,4.4vw,38px);line-height:1.2;margin-bottom:16px}
+.lead{color:var(--muted);font-size:15.5px;max-width:52ch;margin:0 auto 36px}
+
+.deck-picker{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.deck-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  transition:all .2s var(--ease);
+}
+.deck-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.deck-emoji{font-size:28px}
+.deck-card strong{font-family:'Sora',sans-serif;font-size:15px}
+.deck-card span{font-size:12px;color:var(--muted)}
+.deck-card.c-mint{border-top:3px solid var(--brand)}
+.deck-card.c-coral{border-top:3px solid var(--accent)}
+.deck-card.c-violet{border-top:3px solid var(--violet)}
+
+/* ── estudo ── */
+.study{padding-top:20px}
+.study-head{display:flex;align-items:center;gap:16px;margin-bottom:36px}
+.icon-btn{
+  width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--border);
+  font-size:17px;color:var(--ink);flex-shrink:0;transition:all .2s var(--ease);
+}
+.icon-btn:hover{background:var(--ink);color:#fff}
+.study-progress{flex:1}
+.progress-track{height:6px;border-radius:99px;background:var(--border);overflow:hidden;margin-bottom:6px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-dark));transition:width .4s var(--ease)}
+.progress-label{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted)}
+
+.card-stage{position:relative;margin-bottom:26px}
+.flip-hint{
+  position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);
+  background:none;border:none;font-size:12.5px;color:var(--muted);font-weight:600;
+}
+.flashcard{perspective:1400px;width:100%;height:300px;cursor:pointer}
+.flashcard-inner{
+  position:relative;width:100%;height:100%;transition:transform .6s var(--ease);
+  transform-style:preserve-3d;
+}
+.flashcard-inner.flipped{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  padding:36px;box-shadow:var(--shadow-lg);
+}
+.face.front{background:linear-gradient(135deg,var(--ink),#2A2F3A);color:#fff}
+.face.back{background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;transform:rotateY(180deg)}
+.face-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:.08em;opacity:.7;
+}
+.face-text{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;line-height:1.4;max-width:46ch}
+
+.assess-row{display:flex;gap:14px;justify-content:center;margin:44px 0 20px}
+.assess-btn{
+  padding:13px 26px;border-radius:999px;font-weight:700;font-size:14px;border:1.5px solid transparent;
+  transition:all .2s var(--ease);
+}
+.assess-btn.know{background:var(--brand);color:#fff}
+.assess-btn.know:hover{background:var(--brand-dark)}
+.assess-btn.dont{background:var(--surface);color:var(--ink);border-color:var(--border)}
+.assess-btn.dont:hover{border-color:var(--accent);color:var(--accent)}
+
+.nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:16px}
+.glass-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--ink);
+  border-radius:999px;padding:12px 22px;font-size:14px;font-weight:600;transition:all .2s var(--ease);
+}
+.glass-btn:hover{border-color:var(--ink);transform:translateY(-1px)}
+.glass-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.glass-btn.ghost{background:transparent}
+.glass-btn.cta{background:var(--ink);color:#fff;border:none}
+.glass-btn.cta:hover{background:#000}
+
+/* ── resumo ── */
+.summary{padding:60px 0}
+.summary-badge{font-size:44px;display:block;margin-bottom:12px}
+.summary h1{font-size:clamp(26px,4.4vw,36px);margin-bottom:24px}
+.summary-stats{display:flex;justify-content:center;gap:40px;margin-bottom:36px}
+.summary-stats div{display:flex;flex-direction:column;align-items:center;gap:4px}
+.summary-stats strong{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;color:var(--brand-dark)}
+.summary-stats span{font-size:12.5px;color:var(--muted)}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.proto-footnote{margin-top:60px;font-size:11.5px;color:var(--muted);line-height:1.6}
+
+/* ── responsivo ── */
+@media (max-width:640px){
+  .topbar{padding:16px 20px}
+  .tag{display:none}
+  .deck-picker{grid-template-columns:1fr}
+  .flashcard{height:260px}
+  .face{padding:26px}
+  .face-text{font-size:19px}
+  .assess-row{flex-direction:column;align-items:stretch}
+  .summary-stats{gap:24px}
+}
