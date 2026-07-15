@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Objeto de aprendizagem</title>
+  <link rel="stylesheet" href="assets/css/oa.css">
+</head>
+<body>
+  <div class="oa">
+    <nav class="rail" aria-label="Sumário do objeto de aprendizagem">
+      <div class="rail__marca">
+        <h1 class="rail__titulo" id="oa-titulo">Carregando…</h1>
+        <p class="rail__sub" id="oa-subtitulo"></p>
+      </div>
+      <ol class="trilha" id="trilha"></ol>
+      <div class="rail__rodape">
+        <span class="status--lms" id="status-lms">Verificando LMS…</span>
+      </div>
+    </nav>
+
+    <main class="principal">
+      <div class="palco" id="palco"></div>
+
+      <div class="barra">
+        <button type="button" class="btn btn--secundario" id="btn-anterior">Anterior</button>
+        <div class="progresso" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="progresso__preenchido" id="barra-progresso"></span>
+        </div>
+        <span class="progresso__texto" id="progresso-texto">0% percorrido</span>
+        <button type="button" class="btn btn--primario" id="btn-proximo">Próximo</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Região viva: anuncia troca de tela e resultado para leitores de tela -->
+  <div id="anuncio" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="conteudo/curso.js"></script>
+  <script src="assets/js/scorm12.js"></script>
+  <script src="assets/js/oa.js"></script>
+</body>
+</html>

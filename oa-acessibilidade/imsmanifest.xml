@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="OA_MOD_TEMPLATE_V1"
+          version="1.0"
+          xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                              http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+
+  <organizations default="ORG_PRINCIPAL">
+    <organization identifier="ORG_PRINCIPAL">
+      <title>Objeto de Aprendizagem — Modelo Interativo</title>
+      <item identifier="ITEM_1" identifierref="RES_1" isvisible="true">
+        <title>Objeto de Aprendizagem — Modelo Interativo</title>
+        <!-- Nota de mastery: 70 = nota de corte usada pelo LMS para lesson_status -->
+        <adlcp:masteryscore>70</adlcp:masteryscore>
+        <adlcp:maxtimeallowed>02:00:00</adlcp:maxtimeallowed>
+        <adlcp:datafromlms></adlcp:datafromlms>
+      </item>
+    </organization>
+  </organizations>
+
+  <resources>
+    <resource identifier="RES_1" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="assets/css/oa.css"/>
+      <file href="assets/js/scorm12.js"/>
+      <file href="assets/js/oa.js"/>
+      <file href="conteudo/curso.js"/>
+    </resource>
+  </resources>
+</manifest>
