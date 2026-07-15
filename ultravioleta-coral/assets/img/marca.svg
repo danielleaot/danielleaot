@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="Marca do curso">
+  <g fill="none" stroke-linecap="round">
+    <circle cx="24" cy="24" r="15" fill="#6D4AC8"/>
+    <path d="M24 9v30" stroke="#FBF9FF" stroke-width="3"/>
+    <circle cx="24" cy="16" r="3.5" fill="#F4B740"/>
+    <circle cx="24" cy="32" r="3.5" fill="#FF6B5B"/>
+  </g>
+  <text x="48" y="22" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="700" fill="#1A1030" letter-spacing="1.5">LOREM ACADEMY</text>
+  <text x="48" y="38" font-family="'IBM Plex Sans',sans-serif" font-size="11" fill="#6D4AC8" letter-spacing="3">MÓDULO 01</text>
+</svg>

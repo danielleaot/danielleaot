@@ -1,0 +1,77 @@
+/* =========================================================
+   IDENTIDADE "ULTRAVIOLETA & CORAL"
+   Tokens únicos do projeto. Nenhum valor de cor deve ser
+   escrito fora deste arquivo.
+   ========================================================= */
+
+:root {
+  /* --- Tipografia --- */
+  --FT_DISPLAY: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --FT_TEXTO: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --FT_UTIL: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+
+  /* --- Escala tipográfica (fluida) --- */
+  --T_XS: 0.8125rem;
+  --T_SM: 0.9375rem;
+  --T_BASE: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+  --T_LG: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  --T_H4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --T_H3: clamp(1.5rem, 1.28rem + 0.9vw, 1.9375rem);
+  --T_H2: clamp(1.75rem, 1.45rem + 1.2vw, 2.375rem);
+  --T_H1: clamp(2.125rem, 1.6rem + 2.4vw, 3.375rem);
+
+  /* --- Cores base --- */
+  --C_TINTA: #1A1030;        /* fundo escuro: trilha, rodapé */
+  --C_TINTA_80: #2C2049;
+  --C_FONTE: #241F33;
+  --C_FONTE_60: #625B77;
+  --C_PAPEL: #FBF9FF;
+  --C_BRANCO: #FFFFFF;
+  --C_LINHA: #E4DEF4;
+
+  /* --- Cores de marca --- */
+  --C_PRI: #6D4AC8;          /* violeta - estrutura, títulos */
+  --C_PRI_ESC: #4A2F94;
+  --C_PRI_CLR: #F2EEFC;
+  --C_SEC: #FF6B5B;          /* coral - ação, aplicação prática */
+  --C_SEC_CLR: #FFEEEA;
+  --C_TER: #14A38B;          /* jade - verificação, boas práticas */
+  --C_TER_CLR: #E4F5F1;
+  --C_AMB: #F4B740;          /* âmbar - atenção, reflexão */
+  --C_AMB_CLR: #FDF3E1;
+
+  /* --- Estados --- */
+  --C_FOCO: #FF6B5B;
+
+  /* --- Métrica de layout --- */
+  --L_COLUNA: 36rem;         /* medida de leitura */
+  --L_TRILHA: 92px;          /* menu lateral recolhido */
+  --L_TRILHA_ABERTA: 232px;
+  --L_RAIO: 14px;
+  --L_RAIO_G: 26px;
+
+  /* --- Elevação (offset sólido, sem blur difuso) --- */
+  --E_1: 0 2px 0 0 var(--C_LINHA);
+  --E_2: 4px 4px 0 0 var(--C_PRI_CLR);
+  --E_3: 0 18px 40px -24px rgba(26, 16, 48, 0.55);
+
+  /* --- Movimento --- */
+  --M_RAPIDO: 140ms cubic-bezier(0.2, 0, 0.2, 1);
+  --M_MEDIO: 280ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --M_RAPIDO: 1ms;
+    --M_MEDIO: 1ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

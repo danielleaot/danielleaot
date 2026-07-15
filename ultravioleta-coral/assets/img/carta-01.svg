@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Carta 1">
+  <rect width="400" height="400" fill="#FBF9FF"/>
+  <circle cx="200" cy="200" r="130" fill="#6D4AC8" fill-opacity=".14"/>
+  <rect x="120" y="120" width="160" height="160" rx="36" fill="#6D4AC8" transform="rotate(0 200 200)"/>
+  <circle cx="200" cy="200" r="34" fill="#FBF9FF"/>
+  <text x="200" y="214" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="34" font-weight="700" fill="#6D4AC8">01</text>
+</svg>

@@ -1,0 +1,577 @@
+/* =========================================================
+   BASE — reset, tipografia, casca (trilha + conteúdo + rodapé)
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--C_PAPEL);
+  color: var(--C_FONTE);
+  font-family: var(--FT_TEXTO);
+  font-size: var(--T_BASE);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--C_FOCO);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Tipografia ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--FT_DISPLAY);
+  color: var(--C_PRI_ESC);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--T_H1);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--T_H2);
+  font-weight: 700;
+  margin-top: 2.6em;
+}
+
+h3 {
+  font-size: var(--T_H3);
+  font-weight: 600;
+  margin-top: 2em;
+}
+
+h4 {
+  font-size: var(--T_H4);
+  font-weight: 600;
+  margin-top: 1.6em;
+  color: var(--C_PRI);
+}
+
+p {
+  margin: 0 0 1.15em;
+  text-wrap: pretty;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--C_TINTA);
+}
+
+a {
+  color: var(--C_PRI_ESC);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--C_SEC);
+}
+
+/* Numeração de seção — a estrutura carrega informação:
+   "01 / Unidade" indica posição real na sequência do módulo. */
+.eyebrow {
+  font-family: var(--FT_UTIL);
+  font-size: var(--T_XS);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--C_SEC);
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--C_LINHA);
+}
+
+/* ---------- Casca ---------- */
+
+.pular-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  background: var(--C_TINTA);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--L_RAIO) 0;
+  font-family: var(--FT_UTIL);
+}
+
+.pular-link:focus {
+  left: 0;
+  top: 0;
+}
+
+.casca {
+  display: grid;
+  grid-template-columns: var(--L_TRILHA) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* ---------- Trilha (menu lateral) ---------- */
+
+.trilha {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--L_TRILHA);
+  background: var(--C_TINTA);
+  color: #fff;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  transition: width var(--M_MEDIO);
+  overflow: hidden;
+}
+
+.trilha.aberta {
+  width: var(--L_TRILHA_ABERTA);
+  box-shadow: var(--E_3);
+}
+
+.trilha__marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0 18px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 76px;
+}
+
+.trilha__marca svg {
+  width: 30px;
+  flex: 0 0 30px;
+}
+
+.trilha__marca span {
+  font-family: var(--FT_DISPLAY);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--M_RAPIDO);
+}
+
+.trilha.aberta .trilha__marca span {
+  opacity: 1;
+}
+
+.trilha__nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 0;
+  scrollbar-width: thin;
+}
+
+.trilha__item {
+  all: unset;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 0 10px 22px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.72);
+  position: relative;
+}
+
+.trilha__item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.trilha__item[aria-current='true'] {
+  color: #fff;
+}
+
+.trilha__item[aria-current='true']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--C_SEC);
+}
+
+.trilha__num {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--FT_DISPLAY);
+  font-weight: 700;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid transparent;
+  transition: all var(--M_RAPIDO);
+}
+
+.trilha__item:hover .trilha__num,
+.trilha__item[aria-current='true'] .trilha__num {
+  background: var(--C_PRI);
+  border-color: var(--C_PRI_CLR);
+}
+
+.trilha__item[aria-current='true'] .trilha__num {
+  background: var(--C_SEC);
+}
+
+.trilha__rot {
+  font-family: var(--FT_UTIL);
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--M_RAPIDO), transform var(--M_RAPIDO);
+}
+
+.trilha.aberta .trilha__rot {
+  opacity: 1;
+  transform: none;
+}
+
+.trilha__toggle {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 16px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--FT_UTIL);
+  font-size: 0.85rem;
+}
+
+.trilha__toggle:hover {
+  color: #fff;
+}
+
+.trilha__toggle svg {
+  width: 20px;
+  transition: transform var(--M_MEDIO);
+}
+
+.trilha.aberta .trilha__toggle svg {
+  transform: rotate(180deg);
+}
+
+.trilha__toggle span {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--M_RAPIDO);
+}
+
+.trilha.aberta .trilha__toggle span {
+  opacity: 1;
+}
+
+/* ---------- Hambúrguer (mobile) ---------- */
+
+.hamburguer {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 70;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  background: var(--C_TINTA);
+  color: #fff;
+  cursor: pointer;
+  place-items: center;
+  box-shadow: var(--E_3);
+}
+
+.cortina {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 16, 48, 0.55);
+  z-index: 55;
+}
+
+.cortina.ativa {
+  display: block;
+}
+
+/* ---------- Conteúdo ---------- */
+
+.palco {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--L_COLUNA));
+  margin-inline: auto;
+  position: relative;
+}
+
+/* A "espinha": linha vertical que acompanha o conteúdo e marca o
+   progresso de leitura. Assinatura visual do módulo. */
+.espinha {
+  position: absolute;
+  left: -34px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--C_LINHA);
+  overflow: hidden;
+}
+
+.espinha__preenchimento {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  background: linear-gradient(180deg, var(--C_PRI), var(--C_SEC));
+  transition: height 120ms linear;
+}
+
+/* ---------- Capa da unidade ---------- */
+
+.capa {
+  position: relative;
+  background: var(--C_TINTA);
+  color: #fff;
+  overflow: hidden;
+  border-bottom-right-radius: 60px;
+}
+
+.capa__arte {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.capa__conteudo {
+  position: relative;
+  width: min(100% - 2.5rem, 62rem);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.capa__conteudo h1 {
+  color: #fff;
+  max-width: 16ch;
+  margin-bottom: 0.35em;
+}
+
+.capa__conteudo .eyebrow {
+  color: var(--C_AMB);
+}
+
+.capa__conteudo .eyebrow::after {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.capa__linha {
+  font-family: var(--FT_UTIL);
+  font-size: var(--T_LG);
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 48ch;
+  margin: 0;
+}
+
+.capa__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.capa__tag {
+  font-family: var(--FT_UTIL);
+  font-size: var(--T_XS);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  margin-top: 5rem;
+  background: var(--C_TINTA);
+  color: #fff;
+  border-top-left-radius: 60px;
+  padding: 3rem 0 2rem;
+}
+
+.rodape__interno {
+  width: min(100% - 2.5rem, 52rem);
+  margin-inline: auto;
+}
+
+.rodape__barra {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.rodape__barra i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--C_PRI), var(--C_SEC));
+  transition: width var(--M_MEDIO);
+}
+
+.rodape__legenda {
+  font-family: var(--FT_UTIL);
+  font-size: var(--T_SM);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 12px 0 28px;
+}
+
+.rodape__paginacao {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-nav {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--FT_UTIL);
+  font-weight: 600;
+  font-size: var(--T_SM);
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--C_PRI);
+  color: #fff;
+  transition: transform var(--M_RAPIDO), background var(--M_RAPIDO);
+}
+
+.btn-nav:hover {
+  background: var(--C_SEC);
+  transform: translateY(-2px);
+}
+
+.btn-nav[disabled] {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.btn-nav svg {
+  width: 16px;
+}
+
+.rodape__creditos {
+  font-family: var(--FT_UTIL);
+  font-size: var(--T_XS);
+  color: rgba(255, 255, 255, 0.5);
+  margin: 32px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 18px;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 900px) {
+  .casca {
+    grid-template-columns: 1fr;
+  }
+
+  .palco {
+    grid-column: 1;
+  }
+
+  .hamburguer {
+    display: grid;
+  }
+
+  .trilha {
+    width: var(--L_TRILHA_ABERTA);
+    transform: translateX(-100%);
+    transition: transform var(--M_MEDIO);
+  }
+
+  .trilha.aberta {
+    transform: none;
+  }
+
+  .trilha .trilha__marca span,
+  .trilha .trilha__rot,
+  .trilha .trilha__toggle span {
+    opacity: 1;
+    transform: none;
+  }
+
+  .trilha__toggle {
+    display: none;
+  }
+
+  .espinha {
+    display: none;
+  }
+
+  .capa__conteudo {
+    padding-top: 5rem;
+  }
+
+  .capa,
+  .rodape {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 2rem);
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-label="Composição geométrica de abertura do módulo">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1A1030"/><stop offset="1" stop-color="#6D4AC8"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF6B5B"/><stop offset="1" stop-color="#F4B740"/>
+    </linearGradient>
+    <clipPath id="c"><rect width="1200" height="460"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="1200" height="460" fill="url(#g1)"/>
+    <g stroke="#FBF9FF" stroke-opacity=".10" fill="none">
+      <circle cx="980" cy="230" r="60"/><circle cx="980" cy="230" r="94"/><circle cx="980" cy="230" r="128"/><circle cx="980" cy="230" r="162"/><circle cx="980" cy="230" r="196"/><circle cx="980" cy="230" r="230"/><circle cx="980" cy="230" r="264"/><circle cx="980" cy="230" r="298"/><circle cx="980" cy="230" r="332"/><circle cx="980" cy="230" r="366"/><circle cx="980" cy="230" r="400"/><circle cx="980" cy="230" r="434"/><circle cx="980" cy="230" r="468"/>
+    </g>
+    <path d="M0 380 C 220 300, 320 430, 560 350 S 900 250, 1200 320 L1200 460 L0 460Z" fill="#FBF9FF" fill-opacity=".06"/>
+    <circle cx="980" cy="230" r="120" fill="url(#g2)" opacity=".92"/>
+    <rect x="920" y="170" width="120" height="120" rx="28" fill="#14A38B" opacity=".85" transform="rotate(18 980 230)"/>
+    <g fill="#FBF9FF" fill-opacity=".9">
+      <circle cx="120" cy="90" r="5"/><circle cx="160" cy="90" r="5" fill-opacity=".5"/><circle cx="200" cy="90" r="5" fill-opacity=".25"/>
+    </g>
+  </g>
+</svg>
